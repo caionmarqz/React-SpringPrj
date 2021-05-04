@@ -1,36 +1,77 @@
 import React, { Component } from "react";
 
-export default class footer extends Component {
+export default class Footer extends Component {
   render() {
     return (
       <div>
-        <footer className="footer mt-auto py-3 bg-dark">
-          <div className="container">
-            <p className="text-light">
-              App desenvolvido por{" "}
-              <a
-                href="https://github.com/caionmarqz/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Caio Marquezini
-              </a>
-            </p>
-            <p className="text-light">
-              <small>
-                <strong>Semana Spring React</strong>
-                <br />
-                Evento promovido pela escola DevSuperior:{" "}
-                <a
-                  href="https://instagram.com/devsuperior.ig"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  @devsuperior.ig
-                </a>
-              </small>
-            </p>
-          </div>
+        <footer className="bg-light text-center text-lg-start">
+          <div className="container p-4">
+            <div className="row">
+              <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 className="text-uppercase">Desenvolvimento de aplicativos</h5>
+
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
+                  atque ea quis molestias. Fugiat pariatur maxime quis culpa
+                  corporis vitae repudiandae aliquam voluptatem veniam, est
+                  atque cumque eum delectus sint!
+                </p>
+              </div>
+              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase">Links</h5>
+
+                <ul className="list-unstyled mb-0">
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 4
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 className="text-uppercase mb-0">Links</h5>
+
+                <ul className="list-unstyled">
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#!" className="text-dark">
+                      Link 4
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <a className="text-dark" href="https://github.com/caionmarqz/">© 2021 Copyright</a>
+            </div>
         </footer>
       </div>
     );
