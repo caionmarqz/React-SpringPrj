@@ -1,9 +1,23 @@
 package com.projeto.app.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.projeto.app.dto.SaleSuccessDTO;
+import com.projeto.app.dto.SaleSumDTO;
 import com.projeto.app.entities.Sale;
 
 public interface SaleRepository extends JpaRepository<Sale, Long>{
 
+	@Query("SELECT new com.projeto.app.dto.SaleSumDTO(obj.seller, SUM(obj.amount)) "
+			+ "FROM Sale AS obj GROUP BY obj.seller")
+	List<SaleSumDTO> amountGroupedBySeller();
+	
+	@Query("SELECT new com.projeto.app.dto.SaleSuccessDTO(obj.seller, SUM(obj.visited), SUM(obj.deals)) "
+			+ "FROM Sale AS obj GROUP BY obj.seller")
+	List<SaleSuccessDTO> SuccessGroupedBySeller();
+	
+	
 }
