@@ -1,5 +1,58 @@
-import React, { Component } from 'react';
+import axios from 'axios';
+import React, { Component, useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import { round } from 'services/format';
+import { BASE_URL } from 'services/requests';
+import { SaleSuccess } from 'types/sale';
+
+type SeriesData = {
+    name: string;
+    data: number[];
+}
+
+type ChartData = {
+    labels: {
+        categories: string[];
+    };
+    series: SeriesData[];
+
+}
+export const BarChart = () => {
+
+const [chartData, setChartData] = useState<ChartData>({
+    labels: {
+        categories: []
+    },
+    series: [
+        {
+            name: "",
+            data: []
+        }
+    ]
+}
+)
+
+
+useEffect(() => {
+    axios.get(`${BASE_URL}/seller/success-by-seller`)
+        .then(response => {
+            const data = response.data as SaleSuccess[];
+            const myLabels = data.map(x => x.sellerName);
+            const mySeries = data.map(x => round(100.0 * x.deals / x.visited, 1));
+            setChartData({
+                labels: {
+                    categories: []
+                },
+                series: [
+                    {
+                        name: "% Success",
+                        data: mySeries
+                    }
+                ]
+            });
+        })
+})
+
 
 const options = {
     plotOptions: {
@@ -16,21 +69,18 @@ const mockData = {
     series: [
         {
             name: "% Sucesso",
-            data: [43.6, 67.1, 67.7, 45.6, 71.1]                   
+            data: [43.6, 67.1, 67.7, 45.6, 71.1]
         }
     ]
 };
 
 
-export default class BarChart extends Component {
-    render() {
         return (
-        <Chart 
-            options={{ ...options, xaxis: mockData.labels}}
-            series={mockData.series}
-            type="bar"
-            height="240"
-        />
+            <Chart
+                options={{ ...options, xaxis: mockData.labels }}
+                series={mockData.series}
+                type="bar"
+                height="240"
+            />
         )
     }
-}

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavBar from "components/NavBar";
 import Footer from "components/Footer";
 import DataTable from "components/DataTable";
-import BarChart from "components/BarChart";
+import { BarChart } from "components/BarChart";
 import { DonutChart } from "components/DonutChart";
 
 export default class Dashboard extends Component {
