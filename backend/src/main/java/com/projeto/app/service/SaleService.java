@@ -41,6 +41,9 @@ public class SaleService {
 	public List<SaleSuccessDTO> successGroupedBySeller() {
 		return repository.SuccessGroupedBySeller();
 	}
-	
-	
+
+
+    public void delete(long id) {
+		repository.deleteById(id);
+    }
 }

@@ -8,10 +8,6 @@ import { stringify } from "querystring";
 
 export const TableCRUD = () => {
 
-  const state = {
-    data: []
-  }
-
   const[activePage, setActivePage] = useState(0);
 
   const changePage  = (index:number) => {
@@ -34,13 +30,13 @@ export const TableCRUD = () => {
   }, [activePage])
 
   const deleteRecord = (id: number): void => {
-    page.content?.splice(id, 1);
-    setPage(page);
- //   axios.delete(`${BASE_URL}/sales/${id}`);
+    axios.delete(`${BASE_URL}/sales/${id}`);
+    window.location.reload();
+    //esperando melhor implementação
   }
 
   const updateRecord = (id: number): void => {
-
+    alert("será implementado.")
   }
 
   return (
