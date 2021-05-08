@@ -1,3 +1,4 @@
+import { CRUD } from 'pages/CRUD/Index'
 import Dashboard from 'pages/Dashboard'
 import Home from 'pages/Home'
 import React, { Component } from 'react'
@@ -13,6 +14,9 @@ export default class Routes extends Component {
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard />
+                    </Route>
+                    <Route path="/crud">
+                        <CRUD />
                     </Route>
                 </Switch>
             </BrowserRouter>

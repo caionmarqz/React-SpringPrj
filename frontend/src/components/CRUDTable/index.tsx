@@ -1,11 +1,16 @@
 import axios from "axios";
 import Pagination from "components/Pagination";
-import { useEffect, useState } from "react";
+import React, { useDebugValue, useEffect, useState } from "react";
 import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
 import { SalePage } from "types/sale";
+import { stringify } from "querystring";
 
-export const DataTable = () => {
+export const TableCRUD = () => {
+
+  const state = {
+    data: []
+  }
 
   const[activePage, setActivePage] = useState(0);
 
@@ -28,10 +33,18 @@ export const DataTable = () => {
       })
   }, [activePage])
 
+  const deleteRecord = (id: number): void => {
+    page.content?.splice(id, 1);
+    setPage(page);
+ //   axios.delete(`${BASE_URL}/sales/${id}`);
+  }
+
+  const updateRecord = (id: number): void => {
+
+  }
 
   return (
     <>
-      <Pagination page={page} onPageChange={changePage}/>
       <table className="table">
         <thead>
           <tr>
@@ -40,6 +53,8 @@ export const DataTable = () => {
             <th>Clientes visitados</th>
             <th>Negócios fechados</th>
             <th>Valor</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -50,10 +65,13 @@ export const DataTable = () => {
               <td>{item.visited}</td>
               <td>{item.deals}</td>
               <td>{item.amount.toFixed(2)}</td>
+              <td><a href="#" onClick={() => updateRecord(item.id)}><img src='edit.png' height="28" width="28"></img></a></td>
+              <td><a href="#" onClick={() => deleteRecord(item.id)}><img src='delete.png' height="28" width="28"></img></a></td>
             </tr>
           ))}
         </tbody>
       </table>
+      <Pagination page={page} onPageChange={changePage}/>
     </>
   );
 }
